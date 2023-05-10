@@ -247,6 +247,15 @@ snippet forn Loop over a variable range of numbers
 		start=$((start+1))
 	done
 
+snippet forc Iterate over characters in a string
+	str=${1:string}
+	while [ -n "$arraytr" ]; do
+		rest=${str#?}
+		first_char=${str%"$rest"}
+		printf "%s\n' "$first_char"
+		str=$rest
+	done
+
 snippet read Loop over the contents of a file
 	while IFS= read -r line || [ -n "\$line" ]; do
 		printf '%s\n' "\$line"
@@ -330,3 +339,38 @@ snippet isint Check if a number is an integer
 		# Usage: isint "number"
 		printf %d "\$1" >/dev/null 2>&1
 	}
+
+snippet hextodec Hexadecimal to Decimal
+	printf '%s\n' "$((0xFF))"
+	# returns 255
+
+snippet array How to manipulate IFS to have some sort of arrays in POSIX sh
+	array="${1:A|B|C|D}"
+	IFS='|'
+	set -f
+
+	getNth()  {
+		shift "$(( \$1 + 1 ))"
+		printf '%s\n' "\$1"
+	}
+
+	getLast() {
+		getNth "$(( $(length "$@") - 1 ))" "$@"
+	}
+
+	len()  {
+		echo "$#"
+	}
+
+snippet array2
+	s2='t1 t2 t3 t4'
+	set -f
+	IFS=' '
+
+	for c in \${s2}; do
+		set +f
+		unset IFS
+		echo "\$c"
+	done
+	set +f
+	unset IFS
