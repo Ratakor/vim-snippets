@@ -1,13 +1,8 @@
 # (need rework)
 snippet base
-	PREFIX = /usr/local
-	CC = cc
-	CFLAGS = -g -Wall -W -ansi -Werror
-	DEBUG_CFLAGS = -g -Wall -W -ansi -pedantic -Werror -Wfloat-equal\
-		-Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align\
-        	-Waggregate-return -Wstrict-prototypes -Wmissing-prototypes\
-        	-Wmissing-declarations -Wnested-externs -Wunreachable-code\
-		-Wundef -Wshadow
+	PREFIX   ?= /usr/local
+	CC       ?= cc
+	CFLAGS   += -std=c99 -pedantic -Wall -O2 -g -W
 
 	SRC = ${1:src}.c
 	OBJ = \${SRC:.c=.o}
@@ -19,9 +14,6 @@ snippet base
 
 	$1: \${OBJ}
 		\${CC} -o  \$@  \${OBJ} \${LDLFLAGS}
-
-	debug:
-		CFLAGS = \${DEBUG_CFLAGS}
 
 	clean:
 		rm -f *.o
