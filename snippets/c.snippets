@@ -161,33 +161,3 @@ snippet pr
 	printf("${1:%s}\n"${2});
 snippet fpr
 	fprintf(${1:stderr}, "${2:%s}\n"${3});
-snippet prd
-	printf("${1:} = %d\n", $1);
-snippet prf
-	printf("${1:} = %f\n", $1);
-snippet prx
-	printf("${1:} = %${2}\n", $1);
-snippet warn
-	warn("${1:%s}");
-snippet die
-	die(${1:1}, "${2:%s}");
-snippet asr
-	assert($1);
-snippet anl
-	assert(${1:p} != NULL);
-snippet fre
-	free(${1:p});
-snippet mlc
-	${1:p} = malloc(sizeof(*$1));
-snippet clc
-	${1:p} = calloc(${3:nmemb}, sizeof(*$1));
-snippet rlc
-	${1:p} = realloc($1, ${2:size});
-snippet rlca
-	${1:p} = reallocarray($1, ${2:nmemb}, ${3:size});
-snippet memd
-	${1:np} = memdup(${2:p}, ${3:size});
-snippet strd
-	${1:p} = strdup(${2:s});
-snippet strnd
-	${1:p} = strndup(${2:s}, ${3:n});

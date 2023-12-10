@@ -7,16 +7,19 @@ I recommand [LuaSnip](https://github.com/L3MON4D3/LuaSnip) as snippet engine
 for Neovim.
 
 ## Installation
-**vim-plug + LuaSnip**:
-```vim
-call plug#begin()
-Plug 'ratakor/vim-snippets'
-Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
-call plug#end()
+**lazy.nvim + LuaSnip**:
+```lua
+{
+    "L3MON4D3/LuaSnip",
+    build = "make install_jsregexp",
+    dependencies = {
+        "ratakor/vim-snippets",
+    },
+},
 
-lua << EOF
-	require("luasnip.loaders.from_snipmate").lazy_load()
-EOF
+-- ...
+
+require("luasnip.loaders.from_snipmate").lazy_load()
 ```
 
 ## Variables
